@@ -9,5 +9,9 @@
 <button ng-click="addNewBookmark()" id="add">Add</button>
 
 <ul class="linkList">
-  <li ng-repeat="link in links">{{link.linkName}} + {{link.linkUrl}} <button ng-click="addNewTag(link._id)">Add Tag</button> <button ng-click="deleteLink(link._id)">Delete Link</button></li>
+  <li ng-repeat="link in links">
+    <span editable-text="link.linkName" onbeforesave="updateName($data, link._id)">{{link.linkName || empty}}</span>
+    <span editable-text="link.linkUrl" onbeforesave="updateURL($data, link._id)">{{link.linkUrl || empty}}</span>
+    <button ng-click="addNewTag(link._id)">Add Tag</button>
+    <button ng-click="deleteLink(link._id)">Delete Link</button></li>
 </ul>

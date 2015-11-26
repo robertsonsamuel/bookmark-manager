@@ -21,9 +21,20 @@ app.controller('LinkCtrl', function($scope, $state, $stateParams, $http) {
     console.log(linkId);
     $http.delete('http://localhost:3000/bookmarks/deleteLink/'+ linkId)
     .then(resp => {
-      console.log(resp);
     });
   }
+
+  $scope.updateName = function(data, linkId) {
+    $http.put('http://localhost:3000/bookmarks/updateName/' + linkId, {linkName:data})
+    .then(resp => {
+    });
+  };
+
+  $scope.updateUrl = function(data, linkUrl) {
+    $http.put('http://localhost:3000/bookmarks/updateUrl/' + linkId, {linkUrl:data})
+    .then(resp => {
+    });
+  };
 });
 
 

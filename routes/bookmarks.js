@@ -23,9 +23,6 @@ router.post('/newLink', function(req, res) {
   req.body.tags = _.uniq(req.body.tags);
   console.log(req.body, 'incoming body');
   var link = new Link (req.body);
-   // tags.forEach(function  (tag) {
-   //    link.tags.push(tag);
-   //  });
    console.log(link,"link before save");
   link.save( function(err, savedLink){
      res.send(savedLink);
@@ -43,6 +40,26 @@ router.delete('/deleteLink/:id', function(req, res) {
   Link.find({ _id : linkId }).remove().exec();
   res.send();
 });
+
+router.put('/updateName/:id', function(req, res) {
+  var linkId = req.params.id;
+  console.log(req.body.linkName);
+  Link.findByIdAndUpdate(linkId, {$set: { linkName: req.body.linkName}}, function(err, link){
+    link.save();
+    res.send(link);
+  });
+});
+
+router.put('/updateUrl/:id', function(req, res) {
+  var linkId = req.params.id;
+  console.log(req.body.linkUrl);
+  Link.findByIdAndUpdate(linkId, {$set: { linkUrl: req.body.linkUrl}}, function(err, link){
+    link.save();
+    res.send(link);
+  });
+});
+
+
 
 
 
