@@ -5,11 +5,10 @@ var Schema = mongoose.Schema;
 var Link;
 
 var linkSchema = Schema({
-  linkName:{type: String, require: false },
-  linkUrl:{type: String, require: false },
-  linkCreatedAt:{type: Date, required: true, default: new Date()},
-  tags:{type:Array, unique:true}
-
+  linkName:{type: String, required: false },
+  linkUrl:{type: String, required: false },
+  linkCreatedAt:{type: Date, default: new Date()},
+  tags: Array
 });
 
 

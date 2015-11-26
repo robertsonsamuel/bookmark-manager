@@ -14,4 +14,8 @@
     <span editable-text="link.linkUrl" onbeforesave="updateURL($data, link._id)">{{link.linkUrl || empty}}</span>
     <button ng-click="addNewTag(link._id)">Add Tag</button>
     <button ng-click="deleteLink(link._id)">Delete Link</button></li>
+    <ul>
+      <li ng-repeat="tag in link.tags">{{tag}}</li>
+    </ul>
+  </li>
 </ul>
