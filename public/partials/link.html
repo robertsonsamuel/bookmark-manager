@@ -1,0 +1,13 @@
+<h1> Link partials! </h1>
+<label for="linkName">Link</label>
+<input type="text" name="linkName" id="linkName" ng-model="bookmark.linkName" class="form-control">
+<label for="linkUrl">Link Url</label>
+<input type="text" name="linkUrl" id="linkUrl" ng-model="bookmark.linkUrl" class="form-control">
+<label for="tags">Add Tags</label>
+<input type="text" name="tags" id="tag" ng-model="bookmark.tags" class="form-control">
+
+<button ng-click="addNewBookmark()" id="add">Add</button>
+
+<ul class="linkList">
+  <li ng-repeat="link in links">{{link.linkName}} + {{link.linkUrl}} <button ng-click="addNewTag(link._id)">Add Tag</button> </li>
+</ul>
