@@ -9,6 +9,10 @@
 <button ng-click="addNewBookmark()" id="add">Add</button>
 
 <ul class="linkList">
-  <li ng-repeat="link in links"> <a href="{{link.linkUrl}}">{{link.linkName}}</a> <button ng-click="addNewTag(link._id)">Add Tag</button><button ng-click="deleteLink(link._id)">Delete Link</button></li>
+  <li ng-repeat="link in links"> <a href="{{link.linkUrl}}">{{link.linkName}}</a> <button ng-click="addNewTag(link._id)">Add Tag</button><button ng-click="deleteLink(link._id)">Delete Link</button>
+    <ul>
+      <li ng-repeat="tag in link.tags">{{tag}}</li>
+    </ul>
+  </li>
    
 </ul>
