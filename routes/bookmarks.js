@@ -25,13 +25,18 @@ router.post('/newLink', function(req, res) {
   });  
 });
 
-
-
 router.get('/allLinks', function(req, res) {
   Link.find({}, function(err, links) {
     res.status(err ? 400 : 200).send(err || links);
   }).populate('tags');
 });
+
+router.delete('/deleteLink/:id', function(req, res) {
+  var linkId = req.params.id;
+  Link.find({ _id : linkId }).remove().exec();
+  res.send();
+});
+
 
 
 
