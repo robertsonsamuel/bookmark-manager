@@ -4,6 +4,7 @@ var express = require('express');
 var router = express.Router();
 var Link = require('../models/linkSchema');
 var async = require("async");
+var _ = require('lodash');
 
 //  1. save tags 
 // 2. save link
@@ -19,9 +20,15 @@ var async = require("async");
 
 
 router.post('/newLink', function(req, res) {
-  var links = new Link (req.body);
-  links.save(req.body.linkName,function(err, savedLink){
-    savedLink.tags.push(req.body.tag)
+  req.body.tags = _.uniq(req.body.tags);
+  console.log(req.body, 'incoming body');
+  var link = new Link (req.body);
+   // tags.forEach(function  (tag) {
+   //    link.tags.push(tag);
+   //  });
+   console.log(link,"link before save");
+  link.save( function(err, savedLink){
+     res.send(savedLink);
   });  
 });
 

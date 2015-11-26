@@ -8,7 +8,7 @@ var linkSchema = Schema({
   linkName:{type: String, require: false },
   linkUrl:{type: String, require: false },
   linkCreatedAt:{type: Date, required: true, default: new Date()},
-  tags:[]
+  tags:{type:Array, unique:true}
 
 });
 
