@@ -56,6 +56,7 @@ router.put('/updateUrl/:id', function(req, res) {
   var linkId = req.params.id;
   console.log(req.body.linkUrl);
   Link.findByIdAndUpdate(linkId, {$set: { linkUrl: req.body.linkUrl}}, function(err, link){
+    console.log(link);
     link.save();
     res.send(link);
   });

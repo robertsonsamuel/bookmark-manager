@@ -42,7 +42,8 @@ app.controller('LinkCtrl', function($scope, $state, $stateParams, $http) {
     });
   };
 
-  $scope.updateUrl = function(data, linkUrl) {
+  $scope.updateUrl = function(data, linkId) {
+    console.log(data);
     $http.put('http://localhost:3000/bookmarks/updateUrl/' + linkId, {linkUrl:data})
     .then(resp => {
     });
