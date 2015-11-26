@@ -11,9 +11,17 @@ app.controller('LinkCtrl', function($scope, $state, $stateParams, $http) {
   });
 
   $scope.addNewBookmark = function(){
-    $http.post('http://localhost:3000/bookmarks/newLink', $scope.bookmark)
+    var Bookmark = {}
+    Bookmark.tags = $scope.bookmark.tags.split(',');
+    Bookmark.linkName = $scope.bookmark.linkName;
+    Bookmark.linkUrl = $scope.bookmark.linkUrl;
+    console.log(Bookmark);
+    $http.post('http://localhost:3000/bookmarks/newLink', Bookmark)
     .then(resp => {
-      console.log(resp);
+      $http.get('http://localhost:3000/bookmarks/allLinks')
+      .then(resp => {
+        $scope.links = resp.data;
+      });
     });
   };
 
@@ -21,7 +29,10 @@ app.controller('LinkCtrl', function($scope, $state, $stateParams, $http) {
     console.log(linkId);
     $http.delete('http://localhost:3000/bookmarks/deleteLink/'+ linkId)
     .then(resp => {
-      console.log(resp);
+      $http.get('http://localhost:3000/bookmarks/allLinks')
+      .then(resp => {
+        $scope.links = resp.data;
+      });
     });
   }
 });

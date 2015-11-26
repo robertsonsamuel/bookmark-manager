@@ -10,6 +10,7 @@ var _ = require('lodash');
 // 2. save link
 // 3. save tags to link
 // 4. save link to tags
+// Four Step startup plan
 
 // outside is link
 // next is tags
@@ -23,11 +24,11 @@ router.post('/newLink', function(req, res) {
   req.body.tags = _.uniq(req.body.tags);
   console.log(req.body, 'incoming body');
   var link = new Link (req.body);
-   // tags.forEach(function  (tag) {
-   //    link.tags.push(tag);
-   //  });
-   console.log(link,"link before save");
+  
+  console.log(link);
   link.save( function(err, savedLink){
+    console.log("in save", savedLink);
+    console.log(err);
      res.send(savedLink);
   });  
 });
@@ -35,7 +36,7 @@ router.post('/newLink', function(req, res) {
 router.get('/allLinks', function(req, res) {
   Link.find({}, function(err, links) {
     res.status(err ? 400 : 200).send(err || links);
-  }).populate('tags');
+  });
 });
 
 router.delete('/deleteLink/:id', function(req, res) {
